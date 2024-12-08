@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quad Neon Snake Animation</title>
+  <style>
+    /* Общий стиль */
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: black; /* Чёрный фон для контраста */
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-content: space-between;
+      height: 100vh;
+    }
+
+    /* Змейка */
+    .snake {
+      position: absolute;
+      width: 30px;
+      height: 10px;
+      background: linear-gradient(180deg, cyan, rgba(2, 152, 212, 0.883));
+      box-shadow: 0 0 15px cyan, 0 0 30px rgb(0, 123, 255);
+      border-radius: 5px;
+      animation-duration: 1s;
+      animation-timing-function: linear;
+      animation-fill-mode: forwards;
+    }
+
+    /* Анимация для левой верхней змейки */
+    .snake-left-top {
+      animation-name: snakeZigzagLeft;
+    }
+
+    /* Анимация для правой верхней змейки */
+    .snake-right-top {
+      animation-name: snakeZigzagRight;
+    }
+
+    /* Анимация для левой нижней змейки */
+    .snake-left-bottom {
+      animation-name: snakeZigzagLeftBottom;
+    }
+
+    /* Анимация для правой нижней змейки */
+    .snake-right-bottom {
+      animation-name: snakeZigzagRightBottom;
+    }
+     
+
+    /* Анимация для левой верхней змейки */
+    @keyframes snakeZigzagLeft {
+      0% {
+        top: 0;
+        left: 0;
+      }
+      10% {
+        top: 0;
+        left: 100px;
+      }
+      20% {
+        top: 200px;
+        left: 100px;
+      }
+      30% {
+        top: 200px;
+        left: 200px;
+      }
+      40% {
+        top: 50px;
+        left: 200px;
+      }
+      50% {
+        top: 50px;
+        left: 300px;
+      }
+      60% {
+        top: 250px;
+        left: 300px;
+      }
+      70% {
+        top: 250px;
+        left: 400px;
+      }
+      80% {
+        top: 100px;
+        left: 400px;
+      }
+      90% {
+        top: 100px;
+        left: 500px;
+      }
+      100% {
+        top: 270px;
+        left: 600px;
+      }
+    }
+
+    /* Анимация для правой верхней змейки */
+    @keyframes snakeZigzagRight {
+      0% {
+        top: 0;
+        right: 0;
+      }
+      10% {
+        top: 0;
+        right: 100px;
+      }
+      20% {
+        top: 200px;
+        right: 100px;
+      }
+      30% {
+        top: 200px;
+        right: 200px;
+      }
+      40% {
+        top: 50px;
+        right: 200px;
+      }
+      50% {
+        top: 50px;
+        right: 300px;
+      }
+      60% {
+        top: 250px;
+        right: 300px;
+      }
+      70% {
+        top: 250px;
+        right: 400px;
+      }
+      80% {
+        top: 100px;
+        right: 400px;
+      }
+      90% {
+        top: 100px;
+        right: 500px;
+      }
+      100% {
+        top: 270px;
+        right: 600px;
+      }
+    }
+
+    /* Анимация для левой нижней змейки */
+    @keyframes snakeZigzagLeftBottom {
+      0% {
+        bottom: 0;
+        left: 0;
+      }
+      10% {
+        bottom: 0;
+        left: 100px;
+      }
+      20% {
+        bottom: 200px;
+        left: 100px;
+      }
+      30% {
+        bottom: 200px;
+        left: 200px;
+      }
+      40% {
+        bottom: 50px;
+        left: 200px;
+      }
+      50% {
+        bottom: 50px;
+        left: 300px;
+      }
+      60% {
+        bottom: 250px;
+        left: 300px;
+      }
+      70% {
+        bottom: 250px;
+        left: 400px;
+      }
+      80% {
+        bottom: 100px;
+        left: 400px;
+      }
+      90% {
+        bottom: 100px;
+        left: 500px;
+      }
+      100% {
+        bottom: 270px;
+        left: 600px;
+      }
+    }
+
+    /* Анимация для правой нижней змейки */
+    @keyframes snakeZigzagRightBottom {
+      0% {
+        bottom: 0;
+        right: 0;
+      }
+      10% {
+        bottom: 0;
+        right: 100px;
+      }
+      20% {
+        bottom: 200px;
+        right: 100px;
+      }
+      30% {
+        bottom: 200px;
+        right: 200px;
+      }
+      40% {
+        bottom: 50px;
+        right: 200px;
+      }
+      50% {
+        bottom: 50px;
+        right: 300px;
+      }
+      60% {
+        bottom: 250px;
+        right: 300px;
+      }
+      70% {
+        bottom: 250px;
+        right: 400px;
+      }
+      80% {
+        bottom: 100px;
+        right: 400px;
+      }
+      90% {
+        bottom: 100px;
+        right: 500px;
+      }
+      100% {
+        bottom: 270px;
+        right: 600px;
+      }
+    }
+  </style>
+  <script>
+    // Переход на другую страницу за 0.3 секунды до конца анимации
+    window.onload = function() {
+      setTimeout(function() {
+        window.location.href = 'Untitled-1.html';
+      }, 950); // 4700ms = 4.7 секунд
+    };
+  </script>
+</head>
+<body>
+  <!-- Верхняя левая змейка -->
+  <div class="container">
+    <div class="snake snake-left-top"></div>
+  </div>
+  <!-- Верхняя правая змейка -->
+  <div class="container">
+    <div class="snake snake-right-top"></div>
+  </div>
+  <!-- Нижняя левая змейка -->
+  <div class="container">
+    <div class="snake snake-left-bottom"></div>
+  </div>
+  <!-- Нижняя правая змейка -->
+  <div class="container">
+    <div class="snake snake-right-bottom"></div>
+  </div>
+</body>
+</html>
