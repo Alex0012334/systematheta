@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Step</title>
+    <style>
+        /* Общие стили */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Jura', sans-serif;
+            overflow: hidden;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        /* Фон */
+        .next-page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('photos/test2.jpg') no-repeat center center;
+            background-size: cover;
+            z-index: -1;
+            transition: opacity 0.8s ease-in-out; /* Добавляем плавное затухание */
+        }
+
+        .next-page.fade-out {
+            opacity: 0;
+        }
+
+        /* Заголовок */
+        .title {
+            position: absolute;
+            top: 30px;
+            text-align: center;
+            width: 100%;
+            color: white;
+            font-size: 40px;
+            opacity: 1;
+            animation: fadeInTitle 2s forwards;
+        }
+
+        /* Анимация исчезновения заголовка */
+        .title.fade-out {
+            animation: fadeOutTitle 0.8s forwards;
+        }
+
+        @keyframes fadeOutTitle {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
+        /* Сотовая система */
+        .hex-grid {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Шестиугольники */
+        .hexagon {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: #2a2a2a;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s, transform 0.3s, top 1s, left 1s;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .hexagon:hover {
+            background-color: #007BFF;
+            transform: scale(1.1);
+        }
+
+        .hexagon a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            font-family: 'Jura', sans-serif;
+            text-align: center;
+        }
+
+        /* Расположение шестиугольников */
+        #hex1 {
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #hex2 {
+            top: calc(45% + 5px);
+            left: calc(38.5% + 40px);
+        }
+
+        #hex3 {
+            top: calc(45% + 5px);
+            left: calc(53.5% - 40px);
+        }
+
+        #hex4 {
+            top: calc(60% + 5px);
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+
+        /* Анимация исчезновения */
+        .disappear {
+            animation: shrinkAndFade 0.8s forwards;
+        }
+
+        /* Анимации */
+        @keyframes fadeInTitle {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes shrinkAndFade {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+        }
+
+        /* Стиль для активной кнопки */
+        .active {
+            z-index: 1000;
+            background-color: #007BFF !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Фон -->
+    <div class="background next-page"></div>
+
+    <!-- Заголовок -->
+    <div class="title">
+        <h1>NEXT STEP</h1>
+    </div>
+
+    <!-- Сотовая система -->
+    <div class="hex-grid">
+        <div class="hexagon" id="hex1" onclick="moveToTopLeft(this, 'about.html')">
+            <a href="#">About us</a>
+        </div>
+        <div class="hexagon" id="hex2" onclick="moveToTopLeft(this, 'contacts.html')">
+            <a href="#">Contacts</a>
+        </div>
+        <div class="hexagon" id="hex3" onclick="moveToTopLeft(this, 'partners.html')">
+            <a href="#">Partners</a>
+        </div>
+        <div class="hexagon" id="hex4" onclick="moveToTopLeft(this, 'projects.html')">
+            <a href="#">θ Projects</a>
+        </div>
+    </div>
+
+    <script>
+        function moveToTopLeft(hexagon, url) {
+            const title = document.querySelector('.title');
+            const background = document.querySelector('.next-page');
+
+            // Убираем другие шестиугольники
+            document.querySelectorAll('.hexagon').forEach(hex => {
+                if (hex !== hexagon) {
+                    hex.classList.add('disappear'); // Исчезновение остальных
+                } else {
+                    hex.classList.add('active'); // Активная кнопка
+                }
+            });
+
+            // Если нажата кнопка About Us
+            if (hexagon.id === 'hex1') {
+                background.classList.add('fade-out'); // Затухание фона
+            }
+
+            // Запускаем анимацию исчезновения заголовка
+            title.classList.add('fade-out');
+
+            // Перемещаем шестиугольник в верхний левый угол
+            hexagon.style.top = '10px';
+            hexagon.style.left = '10px';
+            hexagon.style.transform = 'none';
+
+            // Дожидаемся завершения анимации перед переходом
+            setTimeout(() => {
+                window.location.href = url;
+            }, 1000); // Задержка для завершения анимации
+        }
+    </script>
+</body>
+</html>

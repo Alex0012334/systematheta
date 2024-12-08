@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        /* Общие стили */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Jura', sans-serif;
+            overflow: hidden;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        /* Фон */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('photos/about_us.jpg') no-repeat center center;
+            background-size: cover;
+            z-index: -1;
+            filter: brightness(0.8);
+        }
+
+        /* Неоновая подсветка */
+        .neon-light {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500%;
+            height: 50px;
+            background: radial-gradient(circle, rgba(0, 123, 255, 0.8) 0%, rgba(0, 123, 255, 0.1) 50%, transparent 100%);
+            filter: blur(50px);
+            z-index: -1;
+        }
+
+        /* Заголовок */
+        .title {
+            position: absolute;
+            top: 10%;
+            text-align: center;
+            width: 100%;
+            color: white;
+            font-size: 40px;
+            opacity: 0;
+            animation: fadeInTitle 2s forwards; /* Анимация проявления заголовка */
+        }
+
+        .title.fade-out {
+            animation: fadeOutTitle 0.8s forwards;
+        }
+
+        /* Основной контент */
+        .content {
+            position: absolute;
+            top: 30%; /* Текст ниже заголовка */
+            text-align: center;
+            width: 80%;
+            max-width: 800px;
+            margin: 0 auto;
+            color: white;
+            opacity: 0;
+            animation: fadeInContent 2s 1s forwards; /* Анимация проявления текста */
+        }
+
+        .content p {
+            font-size: 18px;
+            line-height: 1.6;
+            white-space: normal;
+        }
+
+        /* Фиксированный шестиугольник */
+        .hexagon {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: #007BFF;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+        }
+
+        .hexagon a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            font-family: 'Jura', sans-serif;
+            text-align: center;
+        }
+
+        /* Анимации */
+        @keyframes fadeInTitle {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOutTitle {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeInContent {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Фон -->
+    <div class="background"></div>
+
+    <!-- Неоновая подсветка -->
+    <div class="neon-light"></div>
+
+    <!-- Шестиугольник -->
+    <div class="hexagon">
+        <a href="next.html">Back</a>
+    </div>
+
+    <!-- Заголовок -->
+    <h1 class="title">About Us</h1>
+
+    <!-- Основной контент -->
+    <div class="content">
+        <p>
+            Discover the mission and vision of System θ (Theta). Learn about our innovative approaches, our values, 
+            and the goals that drive us forward in making a lasting impact. Our journey is about creating innovative 
+            solutions that push the boundaries of possibility.
+        </p>
+    </div>
+
+    <script>
+        // Добавляем fade-out для заголовка при клике на кнопку "Back"
+        const hexagon = document.querySelector('.hexagon');
+        hexagon.addEventListener('click', (event) => {
+            event.preventDefault();
+            const title = document.querySelector('.title');
+            title.classList.add('fade-out');
+
+            setTimeout(() => {
+                window.location.href = hexagon.querySelector('a').href;
+            }, 800); // Длительность анимации совпадает с fadeOutTitle
+        });
+    </script>
+</body>
+</html>
